@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 import time
 import os
@@ -24,3 +25,36 @@ password_field.send_keys(os.getenv("PASSWORD"))
 
 #Clicks the Sign in button
 driver.find_element(By.CLASS_NAME, value="btn__primary--large").click()
+
+#Clicks the easy apply button
+driver.find_element(By.CLASS_NAME, "jobs-apply-button").click()
+
+time.sleep(1)
+phone_num_field = driver.find_element(By.CLASS_NAME, "artdeco-text-input--input")
+phone_num_field.send_keys("12345678")
+
+time.sleep(1)
+
+#Clicks on the Next button
+next_button = driver.find_element(By.CLASS_NAME, 'artdeco-button--primary')
+driver.execute_script("arguments[0].click();", next_button)
+
+time.sleep(1)
+driver.execute_script("arguments[0].click();", next_button)
+
+#Answers selection questions
+question1 = driver.find_element(By.ID, "text-entity-list-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-3971779738-3580441093-multipleChoice")
+question1.click()
+question1.send_keys("y")
+question1.send_keys(Keys.ENTER)
+
+question2 = driver.find_element(By.ID, "text-entity-list-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-3971779738-3580441085-multipleChoice")
+question2.click()
+question2.send_keys("y")
+question2.send_keys(Keys.ENTER)
+
+review_button = driver.find_element(By.CLASS_NAME, "artdeco-button--primary")
+driver.execute_script("arguments[0].click();", review_button)
+
+submit_button = driver.find_element(By.CLASS_NAME, "artdeco-button--primary")
+driver.execute_script("arguments[0].click();", submit_button)
